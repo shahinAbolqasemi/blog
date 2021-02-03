@@ -1,30 +1,42 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Category(models.Model):
-    name = models.CharField('نام', max_length=20)
+    class Meta:
+        verbose_name = 'دسته بندی'
+        verbose_name_plural = 'دسته بندی ها'
+
+    name = models.CharField('نام', max_length=100)
+    sup_category = models.ForeignKey(verbose_name='دسته بندی پدر', to='Category', on_delete=models.CASCADE,
+                                     blank=True, null=True)
 
     def __str__(self):
         return self.name
 
 
 class Post(models.Model):
-    title = models.CharField('عنوان', max_length=20)
-    text = models.TextField('متن')
-    image = models.URLField('تصویر')
-    is_active = models.BooleanField('وضعیت')
-    is_published = models.BooleanField('وضعیت انتشار')
-    date_created = models.DateTimeField('تاریخ ثبت')
-    date_published = models.DateTimeField('تاریخ انتشار')
-    tags = models.ManyToManyField('Tag')
+    class Meta:
+        verbose_name = 'مطلب'
+        verbose_name_plural = 'مطلب ها'
+
+    title = models.CharField('عنوان مطلب', max_length=150)
+    content = RichTextField('مطلب')
+    cover = models.ImageField('تصویر کاور', upload_to='post_cover/')
+    is_active = models.BooleanField('فعال', default=True)
+    is_published = models.BooleanField('انتشار', default=False)
+    date_created = models.DateTimeField('تاریخ ثبت', default=timezone.now)
+    date_published = models.DateTimeField('تاریخ انتشار', blank=True, null=True)
+    tags = models.ManyToManyField(verbose_name='تگ ها', to='Tag')
     author = models.ForeignKey(verbose_name='نویسنده', to=User, on_delete=models.CASCADE)
     category = models.ForeignKey(verbose_name='دسته بندی', to=Category, on_delete=models.CASCADE)
     likes = models.ManyToManyField(
         User,
         through='LikePost',
         through_fields=('post', 'author'),
-        related_name='post_likes'
+        related_name='post_likes',
     )
 
     def __str__(self):
@@ -32,24 +44,32 @@ class Post(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField('نام', max_length=20)
+    class Meta:
+        verbose_name = 'تگ'
+        verbose_name_plural = 'تگ ها'
+
+    name = models.CharField('نام', max_length=100)
 
     def __str__(self):
         return self.name
 
 
 class Comment(models.Model):
-    text = models.CharField('متن', max_length=200)
-    is_published = models.BooleanField('وضعیت انتشار')
-    date_create = models.DateTimeField('تاریخ ثبت')
-    date_published = models.DateTimeField('تاریخ انتشار')
+    class Meta:
+        verbose_name = 'نظر'
+        verbose_name_plural = 'نظرات'
+
+    text = models.CharField('متن', max_length=350)
+    is_published = models.BooleanField('وضعیت انتشار', default=False)
+    date_create = models.DateTimeField('تاریخ ثبت', default=timezone.now)
+    date_published = models.DateTimeField('تاریخ انتشار', blank=True, null=True)
     post = models.ForeignKey(verbose_name='مطلب', to=Post, on_delete=models.CASCADE)
     author = models.ForeignKey(verbose_name='نویسنده', to=User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(
         User,
         through='LikeComment',
         through_fields=('comment', 'author'),
-        related_name='comment_likes'
+        related_name='comment_likes',
     )
 
     def __str__(self):
@@ -57,6 +77,10 @@ class Comment(models.Model):
 
 
 class LikePost(models.Model):
+    class Meta:
+        verbose_name = 'پسندیدن مطلب'
+        verbose_name_plural = 'پسندیدن مطالب'
+
     is_liked = models.BooleanField('وضعیت پسندیدن')
     post = models.ForeignKey(verbose_name='مطلب', to=Post, on_delete=models.CASCADE)
     author = models.ForeignKey(verbose_name='نظر دهنده', to=User, on_delete=models.CASCADE)
@@ -66,6 +90,10 @@ class LikePost(models.Model):
 
 
 class LikeComment(models.Model):
+    class Meta:
+        verbose_name = 'پسندیدن نظر'
+        verbose_name_plural = 'پسندیدن نظرات'
+
     is_liked = models.BooleanField('وضعیت پسندیدن')
     comment = models.ForeignKey(verbose_name='نظر', to=Comment, on_delete=models.CASCADE)
     author = models.ForeignKey(verbose_name='نویسنده', to=User, on_delete=models.CASCADE)
