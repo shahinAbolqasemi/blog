@@ -132,3 +132,9 @@ dmypy.json
 
 # Pycharm files
 .idea/
+
+# collect static folder
+blog/static/
+
+# MEDIA_ROOT
+media/
