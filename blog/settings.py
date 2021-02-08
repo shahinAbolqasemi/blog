@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+
+# from django.conf.global_settings import AUTH_USER_MODEL
+
 from .local_settings import SECRET_KEY, DATABASES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_blog.apps.DjangoBlogConfig',
     'ckeditor',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +122,6 @@ CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 # MEDIA
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+# User model
+AUTH_USER_MODEL = 'django_blog.User'
