@@ -1,7 +1,14 @@
 from ckeditor.fields import RichTextField
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
+
+
+class User(AbstractUser):
+    avatar = models.ImageField(upload_to='user_avatar', verbose_name='آواتار', blank=True, null=True)
+    phone_number = PhoneNumberField(max_length=30, blank=True, null=True, verbose_name='شماره تلفن')
 
 
 class Category(models.Model):
@@ -24,16 +31,16 @@ class Post(models.Model):
 
     title = models.CharField('عنوان مطلب', max_length=150)
     content = RichTextField('مطلب')
-    cover = models.ImageField('تصویر کاور', upload_to='post_cover/')
+    cover = models.ImageField('تصویر کاور', upload_to='post_cover')
     is_active = models.BooleanField('فعال', default=True)
     is_published = models.BooleanField('انتشار', default=False)
     date_created = models.DateTimeField('تاریخ ثبت', default=timezone.now)
     date_published = models.DateTimeField('تاریخ انتشار', blank=True, null=True)
-    tags = models.ManyToManyField(verbose_name='تگ ها', to='Tag')
-    author = models.ForeignKey(verbose_name='نویسنده', to=User, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(verbose_name='تگ ها', to='Tag', blank=True)
+    author = models.ForeignKey(verbose_name='نویسنده', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey(verbose_name='دسته بندی', to=Category, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(
-        User,
+    users_who_liked = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
         through='LikePost',
         through_fields=('post', 'author'),
         related_name='post_likes',
@@ -64,9 +71,9 @@ class Comment(models.Model):
     date_create = models.DateTimeField('تاریخ ثبت', default=timezone.now)
     date_published = models.DateTimeField('تاریخ انتشار', blank=True, null=True)
     post = models.ForeignKey(verbose_name='مطلب', to=Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(verbose_name='نویسنده', to=User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(
-        User,
+    author = models.ForeignKey(verbose_name='نویسنده', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    users_who_liked = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
         through='LikeComment',
         through_fields=('comment', 'author'),
         related_name='comment_likes',
@@ -83,7 +90,7 @@ class LikePost(models.Model):
 
     is_liked = models.BooleanField('وضعیت پسندیدن')
     post = models.ForeignKey(verbose_name='مطلب', to=Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(verbose_name='نظر دهنده', to=User, on_delete=models.CASCADE)
+    author = models.ForeignKey(verbose_name='نظر دهنده', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.is_liked
@@ -96,7 +103,7 @@ class LikeComment(models.Model):
 
     is_liked = models.BooleanField('وضعیت پسندیدن')
     comment = models.ForeignKey(verbose_name='نظر', to=Comment, on_delete=models.CASCADE)
-    author = models.ForeignKey(verbose_name='نویسنده', to=User, on_delete=models.CASCADE)
+    author = models.ForeignKey(verbose_name='نویسنده', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.is_liked
