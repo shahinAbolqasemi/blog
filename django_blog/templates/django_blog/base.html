@@ -13,42 +13,150 @@
               integrity="sha384-mUkCBeyHPdg0tqB6JDd+65Gpw5h/l8DKcCTV2D2UpaMMFd7Jo8A+mDAosaWgFBPl"
               crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'django_blog/main.css' %}">
-
     {% endblock %}
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5" aria-label="Tenth navbar example">
-    <div class="container-fluid">
-        <a class="navbar-brand fs-1" href="#">بلاگ</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08"
-                aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body dir="rtl">
+<header class="shadow">
+    <div class="sp-container">
+        <input type="checkbox" name="" id="check">
+        <div class="logo-sp-container">
+            <h3 class="sp-logo">Brand<span>Name</span></h3>
+        </div>
+        <div class="sp-nav-btn">
+            <div class="sp-nav-links">
+                <ul>
+                    <li class="sp-nav-link" style="--i: .6s">
+                        <a href="#">خانه</a>
+                    </li>
+                    <li class="sp-nav-link" style="--i: .85s">
+                        <a href="#">دسته&zwnj;بندی مطالب<i class="fas fa-caret-down"></i></a>
+                        <div class="sp-dropdown">
+                            <ul>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">ورزش</a>
+                                </li>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">طراحی</a>
+                                </li>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">برنامه نویسی<i class="fas fa-caret-down"></i></a>
+                                    <div class="sp-dropdown second">
+                                        <ul>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">کاتلین</a>
+                                            </li>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">جاوا</a>
+                                            </li>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">اندروید</a>
+                                            </li>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">پایتون<i class="fas fa-caret-down"></i></a>
+                                                <div class="sp-dropdown second">
+                                                    <ul>
+                                                        <li class="sp-dropdown-link">
+                                                            <a href="#">مقدماتی</a>
+                                                        </li>
+                                                        <li class="sp-dropdown-link">
+                                                            <a href="#">جنگو</a>
+                                                        </li>
+                                                        <li class="sp-dropdown-link">
+                                                            <a href="#">فلسک</a>
+                                                        </li>
+                                                        <div class="sp-arrow"></div>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <div class="sp-arrow"></div>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">شبکه</a>
+                                </li>
+                                <div class="sp-arrow"></div>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--                     <li class="sp-nav-link" style="--i: 1.1s">
+                        <a href="#">Services<i class="fas fa-caret-down"></i></a>
+                        <div class="sp-dropdown">
+                            <ul>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">Link 1</a>
+                                </li>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">Link 2</a>
+                                </li>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">Link 3<i class="fas fa-caret-down"></i></a>
+                                    <div class="sp-dropdown second">
+                                        <ul>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">Link 1</a>
+                                            </li>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">Link 2</a>
+                                            </li>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">Link 3</a>
+                                            </li>
+                                            <li class="sp-dropdown-link">
+                                                <a href="#">More<i class="fas fa-caret-down"></i></a>
+                                                <div class="sp-dropdown second">
+                                                    <ul>
+                                                        <li class="sp-dropdown-link">
+                                                            <a href="#">Link 1</a>
+                                                        </li>
+                                                        <li class="sp-dropdown-link">
+                                                            <a href="#">Link 2</a>
+                                                        </li>
+                                                        <li class="sp-dropdown-link">
+                                                            <a href="#">Link 3</a>
+                                                        </li>
+                                                        <div class="sp-arrow"></div>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <div class="sp-arrow"></div>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="sp-dropdown-link">
+                                    <a href="#">Link 4</a>
+                                </li>
+                                <div class="sp-arrow"></div>
+                            </ul>
+                        </div>
+                    </li> -->
+                    <li class="sp-nav-link" style="--i: 1.35s">
+                        <a href="#">درباره ما</a>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">خانه</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">پست ها</a>
-                </li>
-            </ul>
+            <div class="log-sign" style="--i: 1.8s">
+                <a href="#" class="btn transparent">ورود</a>
+                <a href="#" class="btn solid">ثبت نام</a>
+            </div>
+        </div>
+        <div class="hamburger-menu-sp-container">
+            <div class="hamburger-menu">
+                <div></div>
+            </div>
         </div>
     </div>
-</nav>
-
-<main class="container">
-    <div class="row">
-        <div class="col shadow p-5">
-            {% block content %}{% endblock %}
-        </div>
-    </div>
+</header>
+<main>
+    {% block content %}{% endblock %}
 </main>
 {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
             crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f46e782d84.js"></script>
 {% endblock %}
 </body>
 </html>
