@@ -42,19 +42,19 @@
         <div class="overlay"></div>
     </section>
     <div class="container mt-5">
-        <div class="row row-cols-1 row-cols-md-3 g-5" data-masonry='{"percentPosition": true, "originLeft": false }'>
+        <div class="row mx-auto" data-masonry='{"percentPosition": true, "originLeft": false }'>
             {% for post in posts %}
-                <div class="col">
+                <div class="col-sm-6 col-lg-4 mb-4">
                     <div class="card">
                         <img src="{{ post.cover.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="sp-datetime">{{ post.date_created }}</p>
-                            <h5 class="card-title">{{ post.title }}</h5>
+                            <a href="{% url 'django_blog:post' post.id %}" class="text-decoration-none text-dark"><h5 class="card-title">{{ post.title }}</h5></a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6 col-lg-4 mb-4">
                             <div class="card">
                                 <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
                                 <div class="card-body">
