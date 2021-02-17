@@ -1,4 +1,9 @@
 {% extends 'django_blog/base.html' %}
+{% load static %}
+{% block body %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'django_blog/postStyle.css' %}">
+{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -14,10 +19,15 @@
                 <ul class="d-flex flex-wrap p-0 my-5">
                     {% for tag in post.tags.all %}
                         <li class="list-inline-item">
-                            <a href="" type="button" class="btn btn-primary rounded-pill">{{ tag.name }}</a>
+                            <a href="{% url 'django_blog:tag' tag.id %}" type="button"
+                               class="btn btn-primary rounded-pill">{{ tag.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
+                <div class="m-4 d-flex justify-content-end like-bar">
+                    <a class="text-black-50"><i class="far fa-heart fa-lg"></i></a>
+                    <p class="text-black-50 ps-1">{{ post.likepost_set.count }}</p>
+                </div>
                 <div class="container mx-3 mx-sm-auto border-top pt-4">
                     <div class="row justify-content-center my-4">
                         <img src="https://e-cdn-images.dzcdn.net/images/artist/910ea20100d0cd17ed82ff62efdf35de/264x264-000000-80-0-0.jpg"
@@ -81,8 +91,17 @@
                             dolor in, dicta unde rerum velit, quas harum similique excepturi at iste.
                         </div>
                     </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ comment_form.text }}
+                        <button type="submit">ارسال نظر</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'django_blog/post.js' %}"></script>
 {% endblock %}
