@@ -1,0 +1,20 @@
+{% extends 'django_blog/base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <p class="fs-2">نام برچسب: {{ tag.name }}</p>
+        <div class="row mx-auto" data-masonry='{"percentPosition": true, "originLeft": false }'>
+            {% for post in posts %}
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ post.cover.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="sp-datetime">{{ post.date_created }}</p>
+                            <a href="{% url 'django_blog:post' post.id %}" class="text-decoration-none text-dark"><h5
+                                    class="card-title">{{ post.title }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
