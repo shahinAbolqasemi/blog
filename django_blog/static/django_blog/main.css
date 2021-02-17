@@ -9,11 +9,12 @@ header * {
 body {
     font-family: "Poppins", sans-serif;
     direction: rtl;
-}
-
-main {
     background-color: rgba(13, 110, 253, .05);
 }
+
+/*main {*/
+/*    background-color: rgba(13, 110, 253, .05);*/
+/*}*/
 
 .sp-datetime {
     font-size: 0.9vw;
@@ -302,10 +303,10 @@ header #check:checked ~ .hamburger-menu-sp-container .hamburger-menu div {
 }
 
 header
-    #check:checked
-    ~ .hamburger-menu-sp-container
-    .hamburger-menu
-    div:before {
+#check:checked
+~ .hamburger-menu-sp-container
+.hamburger-menu
+div:before {
     transform: translateY(0) rotate(-45deg);
 }
 
@@ -480,10 +481,12 @@ header #check:checked ~ .hamburger-menu-sp-container .hamburger-menu div:after {
     max-width: 100px;
     max-height: 100px;
 }
+
 .container .row .command-box {
     background: #f1f1f1;
     width: inherit;
 }
+
 .container .row {
     width: inherit;
 }
