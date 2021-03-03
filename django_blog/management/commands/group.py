@@ -7,14 +7,7 @@ class Command(BaseCommand):
     help = "my help desc"
 
     def add_arguments(self, parser):
-        # subparser = parser.add_subparsers()
-        # group = subparser.add_parser('group')
-        # permissions = subparser.add_parser('permissions')
-        # group.add_argument('group', type=str)
-        # permissions.add_argument('-m', '--model', required=True)
-        # permissions.add_argument('-p', '--permissions', nargs='+', required=True)
         parser.add_argument('group', type=str)
-        # parser.add_argument('-m', '--model', default=None)
         parser.add_argument('-p', '--permissions', nargs='+', default=None)
 
     def handle(self, *args, **options):
