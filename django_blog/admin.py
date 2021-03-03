@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from django_blog.models import (
-    Post, Tag, LikeComment, Comment, Category, LikePost, User
+    Post, Tag, LikeComment, Comment, Category, LikePost, User, Word
 )
 
 
@@ -14,6 +14,9 @@ class PostModelAdmin(admin.ModelAdmin):
         if not admin.ModelAdmin.has_change_permission(self, request):
             self.__class__.exclude = ('is_active', 'is_published', 'date_created', 'date_published')
         return super().get_form(request, obj, change, **kwargs)
+
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
 
 
 class UserAdmin(BaseUserAdmin):
