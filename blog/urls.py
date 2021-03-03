@@ -24,4 +24,5 @@ urlpatterns = [
     path('', index_view, name='index'),
     path('admin/', admin.site.urls),
     path('blog/', include('django_blog.urls')),
+    path('api/', include('api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
