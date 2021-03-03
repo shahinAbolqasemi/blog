@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.db import models, IntegrityError
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -9,6 +9,11 @@ from phonenumber_field.modelfields import PhoneNumberField
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='user_avatar', verbose_name='آواتار', blank=True, null=True)
     phone_number = PhoneNumberField(max_length=30, blank=True, null=True, verbose_name='شماره تلفن')
+
+
+class Word(models.Model):
+    text = models.CharField(unique=True, max_length=120)
+    lang = models.CharField(max_length=20)
 
 
 class Category(models.Model):
@@ -28,6 +33,12 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'مطلب'
         verbose_name_plural = 'مطلب ها'
+        permissions = [
+            ("search_posts", "Can search on posts"),
+            ("like_post", "Can like each posts"),
+            ("change_self_post", "Can change self post"),
+            ("confirm_posts", "Can confirm posts"),
+        ]
 
     title = models.CharField('عنوان مطلب', max_length=150)
     content = RichTextField('مطلب')
@@ -45,6 +56,8 @@ class Post(models.Model):
         through_fields=('post', 'author'),
         related_name='post_likes',
     )
+    content_words = models.ManyToManyField(to='Word', blank=True)
+    description = models.TextField(verbose_name='توضیحات', max_length=300)
 
     def __str__(self):
         return self.title
@@ -65,6 +78,10 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'نظر'
         verbose_name_plural = 'نظرات'
+        permissions = [
+            ("like_comment", "Can like each comments"),
+            ("confirm_comments", "Can confirm comments"),
+        ]
 
     text = models.CharField('متن', max_length=350)
     is_published = models.BooleanField('وضعیت انتشار', default=False)
@@ -87,6 +104,9 @@ class LikePost(models.Model):
     class Meta:
         verbose_name = 'پسندیدن مطلب'
         verbose_name_plural = 'پسندیدن مطالب'
+        constraints = [
+            models.UniqueConstraint(fields=['post', 'author'], name='unique_like_post'),
+        ]
 
     is_liked = models.BooleanField('وضعیت پسندیدن')
     post = models.ForeignKey(verbose_name='مطلب', to=Post, on_delete=models.CASCADE)
@@ -100,6 +120,9 @@ class LikeComment(models.Model):
     class Meta:
         verbose_name = 'پسندیدن نظر'
         verbose_name_plural = 'پسندیدن نظرات'
+        constraints = [
+            models.UniqueConstraint(fields=['comment', 'author'], name='unique_like_comment'),
+        ]
 
     is_liked = models.BooleanField('وضعیت پسندیدن')
     comment = models.ForeignKey(verbose_name='نظر', to=Comment, on_delete=models.CASCADE)
