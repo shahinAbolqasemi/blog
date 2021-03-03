@@ -138,3 +138,6 @@ blog/static/
 
 # MEDIA_ROOT
 media/
+
+# djago_blog migrations
+django_blog/migrations/
