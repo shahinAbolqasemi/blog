@@ -20,6 +20,10 @@ body {
     font-size: 0.9vw;
     color: #8F8F8F;
 }
+.sp-card-text {
+    font-size: 0.99vw;
+    color: #8F8F8F;
+}
 
 header ul {
     list-style: none;

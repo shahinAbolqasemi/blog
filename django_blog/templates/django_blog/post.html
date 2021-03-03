@@ -91,10 +91,16 @@
                             dolor in, dicta unde rerum velit, quas harum similique excepturi at iste.
                         </div>
                     </div>
-                    <form action="" method="post">
+                    <form class="row justify-content-end my-4" data-post-id="{{ post.id }}" id="commentForm">
                         {% csrf_token %}
-                        {{ comment_form.text }}
-                        <button type="submit">ارسال نظر</button>
+                        {#{{ comment_form.text }}#}
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="نظر خود را اینجل بنویسید"
+                                      name="{{ comment_form.text.html_name }}"
+                                      style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">نظر</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">ارسال نظر</button>
                     </form>
                 </div>
             </div>
@@ -103,5 +109,5 @@
 {% endblock %}
 {% block script %}
     {{ block.super }}
-    <script src="{% static 'django_blog/post.js' %}"></script>
+    <script src="{% static 'django_blog/js/post.js' %}"></script>
 {% endblock %}

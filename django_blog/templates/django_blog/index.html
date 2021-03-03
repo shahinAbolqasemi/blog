@@ -49,91 +49,13 @@
                         <img src="{{ post.cover.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="sp-datetime">{{ post.date_created }}</p>
-                            <a href="{% url 'django_blog:post' post.id %}" class="text-decoration-none text-dark"><h5 class="card-title">{{ post.title }}</h5></a>
+                            <a href="{% url 'django_blog:post' post.id %}" class="text-decoration-none text-dark"><h5
+                                    class="card-title">{{ post.title }}</h5></a>
+                            <p class="sp-card-text">{{ post.description | cut:'100' }}...</p>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="/media/blog/site_cover.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
         </div>
     </div>
 {% endblock %}
