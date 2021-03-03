@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_blog.apps.DjangoBlogConfig',
     'ckeditor',
     'phonenumber_field',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
