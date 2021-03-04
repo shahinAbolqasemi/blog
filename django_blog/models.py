@@ -45,7 +45,7 @@ class Post(models.Model):
     cover = models.ImageField('تصویر کاور', upload_to='post_cover')
     is_active = models.BooleanField('فعال', default=True)
     is_published = models.BooleanField('انتشار', default=False)
-    date_created = models.DateTimeField('تاریخ ثبت', default=timezone.now)
+    date_created = models.DateTimeField('تاریخ ثبت', auto_now_add=True)
     date_published = models.DateTimeField('تاریخ انتشار', blank=True, null=True)
     tags = models.ManyToManyField(verbose_name='تگ ها', to='Tag', blank=True)
     author = models.ForeignKey(verbose_name='نویسنده', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -85,7 +85,7 @@ class Comment(models.Model):
 
     text = models.CharField('متن', max_length=350)
     is_published = models.BooleanField('وضعیت انتشار', default=False)
-    date_create = models.DateTimeField('تاریخ ثبت', default=timezone.now)
+    date_create = models.DateTimeField('تاریخ ثبت', auto_now_add=True)
     date_published = models.DateTimeField('تاریخ انتشار', blank=True, null=True)
     post = models.ForeignKey(verbose_name='مطلب', to=Post, on_delete=models.CASCADE)
     author = models.ForeignKey(verbose_name='نویسنده', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

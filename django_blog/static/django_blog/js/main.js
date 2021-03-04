@@ -18,7 +18,7 @@ $('.modal-body form.input-group').submit(function (event) {
                     const $postItemHtml = $('<li class="list-group-item list-group-item-action">' +
                         '<div class="d-flex w-100 justify-content-between">' +
                         '<a href="" class="text-decoration-none"><h5 class="mb-1">' + post.title + '</h5></a>' +
-                        '<small>' + post.date_published + '</small>' +
+                        '<small>' + DateToCustomFormat(post.date_published) + '</small>' +
                         '</div>' +
                         '<small class="mb-1">' + post.description + '</small>' +
                         '</li>')
@@ -30,3 +30,31 @@ $('.modal-body form.input-group').submit(function (event) {
             console.log(msg)
         });
 });
+
+function DateToCustomFormat(dateStr) {
+    const date = new Date(dateStr)
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]
+    const days = [
+        'Sun',
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat'
+    ]
+    return `${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`
+}

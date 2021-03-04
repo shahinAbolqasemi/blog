@@ -8,7 +8,7 @@ from .models import (
 
 
 def index_view(request):
-    return render(request, 'django_blog/index.html', {'posts': Post.objects.all()})
+    return render(request, 'django_blog/index.html', {'posts': Post.objects.filter(is_published=True)})
 
 
 class PostView(generic.DetailView):
