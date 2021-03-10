@@ -1,5 +1,4 @@
 from django.contrib.auth.models import AnonymousUser
-from django.shortcuts import render
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,10 +6,6 @@ from django_blog.models import (
     Post, Word
 )
 from django_blog.serializers import SearchedPostSerializer, CommentSerializer
-from django.db.models.query import QuerySet
-from django_blog.forms import (
-    CommentModelForm
-)
 
 
 class SearchPost(APIView):
@@ -22,7 +17,8 @@ class SearchPost(APIView):
         search_text = request.GET.get('search')
         if search_text:
             post_query_set = self.search_on_posts(search_text)
-            return Response(SearchedPostSerializer(post_query_set, many=True).data, status=status.HTTP_200_OK)
+            return Response(SearchedPostSerializer(post_query_set, many=True).data,
+                            status=status.HTTP_200_OK)
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def search_on_posts(self, text):
