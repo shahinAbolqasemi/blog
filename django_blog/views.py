@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
-from .forms import CommentModelForm
 from .models import (
     Post, Tag
 )
@@ -17,12 +16,6 @@ class PostView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.method == 'POST':
-            print(self.request)
-            comment_form = CommentModelForm(data=self.request.POST)
-            comment_form.cleaned_data['post'] = context['post']
-        else:
-            context['comment_form'] = CommentModelForm(prefix='comment')
         return context
 
 
