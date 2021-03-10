@@ -31,52 +31,89 @@
                     <li class="sp-nav-link" style="--i: .85s">
                         <a href="#">دسته&zwnj;بندی مطالب<i class="fas fa-caret-down"></i></a>
                         <div class="sp-dropdown">
-                            <ul>
-                                <li class="sp-dropdown-link">
-                                    <a href="#">ورزش</a>
-                                </li>
-                                <li class="sp-dropdown-link">
-                                    <a href="#">طراحی</a>
-                                </li>
-                                <li class="sp-dropdown-link">
-                                    <a href="#">برنامه نویسی<i class="fas fa-caret-down"></i></a>
-                                    <div class="sp-dropdown second">
-                                        <ul>
-                                            <li class="sp-dropdown-link">
-                                                <a href="#">کاتلین</a>
-                                            </li>
-                                            <li class="sp-dropdown-link">
-                                                <a href="#">جاوا</a>
-                                            </li>
-                                            <li class="sp-dropdown-link">
-                                                <a href="#">اندروید</a>
-                                            </li>
-                                            <li class="sp-dropdown-link">
-                                                <a href="#">پایتون<i class="fas fa-caret-down"></i></a>
+                            {% if posts_categories %}
+                                <ul>
+                                    {% for category in posts_categories.items %}
+                                        <li class="sp-dropdown-link">
+                                            {% if category.1 %}
+                                                <a href="#">{{ category.0 }}<i class="fas fa-caret-down"></i></a>
                                                 <div class="sp-dropdown second">
                                                     <ul>
-                                                        <li class="sp-dropdown-link">
-                                                            <a href="#">مقدماتی</a>
-                                                        </li>
-                                                        <li class="sp-dropdown-link">
-                                                            <a href="#">جنگو</a>
-                                                        </li>
-                                                        <li class="sp-dropdown-link">
-                                                            <a href="#">فلسک</a>
-                                                        </li>
-                                                        <div class="sp-arrow"></div>
+                                                        {% for sub_cat_1 in category.1.items %}
+                                                            {% if sub_cat_1.1 %}
+                                                                <li class="sp-dropdown-link">
+                                                                    <a href="#">{{ sub_cat_1.0 }}<i
+                                                                            class="fas fa-caret-down"></i></a>
+                                                                    <div class="sp-dropdown second">
+                                                                        <ul>
+                                                                            {% for sub_cat_2 in sub_cat_1.1 %}
+                                                                                <li class="sp-dropdown-link">
+                                                                                    <a href="#">{{ sub_cat_2 }}</a>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                            <div class="sp-arrow"></div>
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                            {% else %}
+                                                                <li class="sp-dropdown-link">
+                                                                    <a href="#">{{ sub_cat_1.0 }}</a>
+                                                                </li>
+                                                            {% endif %}
+                                                        {% endfor %}
                                                     </ul>
                                                 </div>
-                                            </li>
-                                            <div class="sp-arrow"></div>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="sp-dropdown-link">
-                                    <a href="#">شبکه</a>
-                                </li>
-                                <div class="sp-arrow"></div>
-                            </ul>
+                                            {% else %}
+                                                <a href="#">{{ category.0 }}</a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                    {#                                    <li class="sp-dropdown-link">#}
+                                    {#                                        <a href="#">ورزش</a>#}
+                                    {#                                    </li>#}
+                                    {#                                    <li class="sp-dropdown-link">#}
+                                    {#                                        <a href="#">طراحی</a>#}
+                                    {#                                    </li>#}
+                                    {#                                    <li class="sp-dropdown-link">#}
+                                    {#                                        <a href="#">برنامه نویسی<i class="fas fa-caret-down"></i></a>#}
+                                    {#                                        <div class="sp-dropdown second">#}
+                                    {#                                            <ul>#}
+                                    {#                                                <li class="sp-dropdown-link">#}
+                                    {#                                                    <a href="#">کاتلین</a>#}
+                                    {#                                                </li>#}
+                                    {#                                                <li class="sp-dropdown-link">#}
+                                    {#                                                    <a href="#">جاوا</a>#}
+                                    {#                                                </li>#}
+                                    {#                                                <li class="sp-dropdown-link">#}
+                                    {#                                                    <a href="#">اندروید</a>#}
+                                    {#                                                </li>#}
+                                    {#                                                <li class="sp-dropdown-link">#}
+                                    {#                                                    <a href="#">پایتون<i class="fas fa-caret-down"></i></a>#}
+                                    {#                                                    <div class="sp-dropdown second">#}
+                                    {#                                                        <ul>#}
+                                    {#                                                            <li class="sp-dropdown-link">#}
+                                    {#                                                                <a href="#">مقدماتی</a>#}
+                                    {#                                                            </li>#}
+                                    {#                                                            <li class="sp-dropdown-link">#}
+                                    {#                                                                <a href="#">جنگو</a>#}
+                                    {#                                                            </li>#}
+                                    {#                                                            <li class="sp-dropdown-link">#}
+                                    {#                                                                <a href="#">فلسک</a>#}
+                                    {#                                                            </li>#}
+                                    {#                                                            <div class="sp-arrow"></div>#}
+                                    {#                                                        </ul>#}
+                                    {#                                                    </div>#}
+                                    {#                                                </li>#}
+                                    {#                                                <div class="sp-arrow"></div>#}
+                                    {#                                            </ul>#}
+                                    {#                                        </div>#}
+                                    {#                                    </li>#}
+                                    {#                                    <li class="sp-dropdown-link">#}
+                                    {#                                        <a href="#">شبکه</a>#}
+                                    {#                                    </li>#}
+                                    {#                                    <div class="sp-arrow"></div>#}
+                                </ul>
+                            {% endif %}
                         </div>
                     </li>
                     <li class="sp-nav-link" style="--i: 1.35s">
@@ -88,7 +125,8 @@
             <div class="log-sign" style="--i: 1.8s">
                 <a href="#" class="btn transparent">ورود</a>
                 <a href="#" class="btn solid">ثبت نام</a>
-                <a href="#" id="simpleSearch" class="mx-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                <a href="#" id="simpleSearch" class="mx-3" data-bs-toggle="modal"
+                   data-bs-target="#searchModal"><i
                         class="fas fa-search"></i></a>
             </div>
         </div>
@@ -99,6 +137,9 @@
         </div>
     </div>
 </header>
+{#{% for category in posts_categories %}#}
+{#    {{ category }}#}
+{#{% endfor %}#}
 <main>
     {% block content %}{% endblock %}
 </main>
