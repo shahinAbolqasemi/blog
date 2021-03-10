@@ -51,7 +51,7 @@
                             <p class="sp-datetime">{{ post.date_published }}</p>
                             <a href="{% url 'django_blog:post' post.id %}" class="text-decoration-none text-dark"><h5
                                     class="card-title">{{ post.title }}</h5></a>
-                            <p class="sp-card-text">{{ post.description | cut:'100' }}...</p>
+                            <p class="fs-6">{{ post.description | cut:'100' }}...</p>
                         </div>
                     </div>
                 </div>
