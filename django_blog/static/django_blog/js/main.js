@@ -17,7 +17,7 @@ $('.modal-body form.input-group').submit(function (event) {
                 data.forEach(function (post) {
                     const $postItemHtml = $('<li class="list-group-item list-group-item-action">' +
                         '<div class="d-flex w-100 justify-content-between">' +
-                        '<a href="" class="text-decoration-none"><h5 class="mb-1">' + post.title + '</h5></a>' +
+                        '<a href="' + post.url + '" class="text-decoration-none"><h5 class="mb-1">' + post.title + '</h5></a>' +
                         '<small>' + DateToCustomFormat(post.date_published) + '</small>' +
                         '</div>' +
                         '<small class="mb-1">' + post.description + '</small>' +

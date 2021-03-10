@@ -13,6 +13,7 @@ $('#commentForm').submit(function (event) {
     const postId = $(this).attr('data-post-id')
     const commentText = $(this).find('textarea.form-control')
     const csrf = $(this).find('input[name=csrfmiddlewaretoken]')
+    const $submitBtn = $(this).find('button:submit')
     $.ajax({
         accepts: {
             "json": 'application/json'
@@ -27,7 +28,7 @@ $('#commentForm').submit(function (event) {
     })
         .done(function () {
             commentText.val('')
-
+            $submitBtn.attr('disabled', true)
         })
         .fail(function () {
 

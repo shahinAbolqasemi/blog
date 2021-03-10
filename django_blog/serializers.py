@@ -10,18 +10,22 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ['name']
 
 
-class SearchedPostSerializer(serializers.ModelSerializer):
+class SearchedPostSerializer(serializers.HyperlinkedModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
+    url = serializers.HyperlinkedIdentityField(view_name='django_blog:post')
+    author = serializers.ReadOnlyField(source="author.username")
+    category = serializers.ReadOnlyField(source="category.name")
 
     class Meta:
         model = Post
         fields = [
+            'url',
             'title',
             'date_published',
             'tags',
             'author',
             'category',
-            'description'
+            'description',
         ]
 
 

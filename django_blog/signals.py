@@ -23,7 +23,7 @@ def post_post_save(sender, instance, created, *args, **kwargs):
 
 
 @receiver(pre_save, sender=Comment)
-def comment_post_save(sender, instance, created, *args, **kwargs):
+def comment_post_save(sender, instance, *args, **kwargs):
     # set date to publish a comment
     set_date_of_published(instance)
 
